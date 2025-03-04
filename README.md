@@ -13,14 +13,14 @@ The basic flow is like this if Alice wants to send Bob an authenticated message
 1. Alice and Bob have a `PSK` embedded in a `TPM`
 2. Bob generates a `HPKE` Keypair and gives Alice the Public Key
 3. Alice creates some Additional Authenticated Data (AAD) plaintext visible on the wire with a random nonce value (eg uuid or timestamp)
-4. Alice uses the TPM based key to generate a *new* PSK using `HMAC`
-   `derived_psk=HMAC(TPM_PSK,AAD+uuid)`
+4. Alice uses the TPM based key to generate a *new* PSK using `HMAC`:
+   `derived_psk=HMAC(TPM_PSK, psk_id+AAD+uuid)`
 5. Alice uses the Public key to encrypt a symmetric key which itself encrypts Alice's message.  
    This will provide and encapsulation key (`ek`) and a ciphertext (`ct`)
 6. Alice also  attaches the authentication context to the message using the `derived_psk`
 7. Alice sends Bob the `ek`, `ct` and the `AAD+uuid` value (the latter in plaintext visible to Eve)
 8. Bob will decrypt Alice's message using `ek`, `ct`
-9. Bob will use the same `AAD+uuid` to arrive at the same `derived_psk` using his TPM
+9. Bob will use the same `psk_id+AAD+uuid` to arrive at the same `derived_psk` using his TPM
 10. Bob will verify the message sent by Alice is authenticated using the this additional data.  
     Note the authentication encompasses Alice's message itself so it authenticated and integrity protected.
 
