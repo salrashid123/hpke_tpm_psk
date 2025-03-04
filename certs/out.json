@@ -1,0 +1,7 @@
+{
+  "ek": "BLPRFDIu64j39hT7Kaj9TJXR/r88zlNa/aD/3wVt/8OC6Xmk6e939XScdzL8SKdyEUs9R/RHc4IgihC37HZKOwM=",
+  "ciphertext": "Zxf9PGdCK9DyIPlO7x+M21FNlMSwIxAZxwhgavHf4gt+jwpMhV9+bfhIaTxFnCsyaM0=",
+  "context": "cHVibGljIGluZm8gc3RyaW5nLCBrbm93biB0byBib3RoIEFsaWNlIGFuZCBCb2I=",
+  "aad": "YWRkaXRpb25hbCBwdWJsaWMgZGF0YQ==",
+  "psk_identity": "mypsk-id"
+}
