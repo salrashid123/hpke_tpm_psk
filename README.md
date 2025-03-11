@@ -24,6 +24,7 @@ The basic flow is like this if Alice wants to send Bob an authenticated message
 10. Bob will verify the message sent by Alice is authenticated using the this additional data.  
     Note the authentication encompasses Alice's message itself so it authenticated and integrity protected.
 
+![images/HPKE_PSK.png](images/HPKE_PSK.png)
 
 >>> NOTE, none of this has been reviewed; its just an idea that needs vetting;  caveat emptor
 
