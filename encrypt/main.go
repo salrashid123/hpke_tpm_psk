@@ -12,6 +12,7 @@ import (
 
 	"github.com/cloudflare/circl/hpke"
 	"github.com/google/uuid"
+	"github.com/hashicorp/vault/sdk/helper/kdf"
 )
 
 var (
@@ -52,7 +53,11 @@ func main() {
 	// End standard HMAC
 
 	// start TPM HMAC
-	psk, err := common.TPMHMAC(*tpmPath, *pemkey, combinedKey)
+
+	prfLen := kdf.HMACSHA256PRFLen
+	psk, err := kdf.CounterMode(func(key []byte, data []byte) ([]byte, error) {
+		return common.TPMHMAC(*tpmPath, *pemkey, data)
+	}, prfLen, nil, combinedKey, 256)
 	if err != nil {
 		log.Fatalf("Error runing TPM HMAC: %v", err)
 	}
